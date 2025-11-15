@@ -54,6 +54,22 @@ body {
     position: relative;
     z-index: 1;
     image-rendering: pixelated;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.container::-webkit-scrollbar-track {
+    background: #3d0a0a;
+    border: 2px solid #8b1a1a;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: #8b1a1a;
+    border: 2px solid #5c0a0a;
 }
 
 .header {
@@ -81,11 +97,11 @@ h1 {
     margin: 15px 0;
 }
 
-.start-screen, .quiz-screen, .result-screen {
+.start-screen, .material-screen, .quiz-screen, .result-screen {
     display: none;
 }
 
-.start-screen.active, .quiz-screen.active, .result-screen.active {
+.start-screen.active, .material-screen.active, .quiz-screen.active, .result-screen.active {
     display: block;
 }
 
@@ -100,6 +116,13 @@ h1 {
     margin: 25px 0;
 }
 
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
 button {
     background: #8b1a1a;
     color: #fff;
@@ -111,6 +134,7 @@ button {
     transition: all 0.3s;
     box-shadow: 4px 4px 0 #3d0a0a;
     margin: 10px;
+    width: auto;
 }
 
 button:hover {
@@ -122,6 +146,52 @@ button:hover {
 button:active {
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0 #3d0a0a;
+}
+
+.btn-secondary {
+    background: #5c4a2a;
+    border-color: #3d2a0a;
+}
+
+.btn-secondary:hover {
+    background: #6d5a3a;
+}
+
+.material-content {
+    color: #ddd;
+    font-size: 10px;
+    line-height: 2;
+    text-align: left;
+}
+
+.material-section {
+    margin: 25px 0;
+    padding: 20px;
+    background: rgba(139, 26, 26, 0.2);
+    border-left: 4px solid #d4a373;
+}
+
+.material-section h3 {
+    color: #d4a373;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.material-section ul {
+    list-style: none;
+    padding-left: 15px;
+}
+
+.material-section li {
+    margin: 10px 0;
+    position: relative;
+}
+
+.material-section li:before {
+    content: "✝";
+    color: #d4a373;
+    position: absolute;
+    left: -15px;
 }
 
 .progress-bar {
@@ -250,4 +320,6 @@ button:active {
     button { font-size: 10px; padding: 12px 20px; }
     .question-text { font-size: 11px; }
     .option { font-size: 9px; }
+    .material-content { font-size: 9px; }
+    .material-section h3 { font-size: 11px; }
 }
