@@ -1,73 +1,151 @@
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="https://github.com/kaylaasem/SoulFuel/blob/main/Photos/Logo_SoulFuel.png?raw=true">
-
     <title>SoulFuel</title>
-
-    <!-- Load CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="https://github.com/kaylaasem/SoulFuel/blob/main/Photos/Logo_SoulFuel.png?raw=true">
 </head>
-
 <body>
     <div class="pixel-bg"></div>
 
-    <!-- <div class="bible-symbol" style="top: 10%; left: 10%;">✝</div> -->
-    <div class="bible-symbol" style="top: 70%; right: 15%;">📖</div>
-    <div class="bible-symbol" style="top: 30%; right: 8%;">🕊</div>
-    <div class="bible-symbol" style="bottom: 15%; left: 12%;">⛪</div>
 
-    <div class="container">
+<div class="bible-symbol" style="top: 70%; right: 15%;">📖</div>
+<div class="bible-symbol" style="top: 30%; right: 8%;">🕊</div>
+<div class="bible-symbol" style="bottom: 15%; left: 12%;">⛪</div>
 
-        <!-- Start Screen -->
-        <div class="start-screen active">
-            <div class="header">
-                <h1>SOULFUEL</h1>
-                <!-- <div class="cross-icon">✝</div> -->
-                 <img src="https://github.com/kaylaasem/SoulFuel/blob/main/Photos/Logo_SoulFuel.png?raw=true" height="100px" width="100px" alt="SoulFuel Logo" class="logo">
-                <p class="subtitle">BIBLE QUIZ</p>
-            </div>
-            <div class="start-content">
-                <p>Uji pengetahuan tentang ke-5 Sola</p>
-                <p>📖 Bersiaplah untuk menyelami Firman Tuhan 🕊</p>
-                <button onclick="startQuiz()">MULAI QUIZ</button>
-            </div>
+<div class="container">
+    <!-- Start Screen -->
+    <div class="start-screen active">
+        <div class="header">
+            <h1>SOULFUEL</h1>
+            <img src="https://github.com/kaylaasem/SoulFuel/blob/main/Photos/Logo_SoulFuel.png?raw=true" height="100px" width="100px" alt="SoulFuel Logo" class="logo">
+            <p class="subtitle">BIBLE HISTORY QUIZ</p>
         </div>
-
-        <!-- Quiz Screen -->
-        <div class="quiz-screen">
-            <div class="header">
-                <h1>SOULFUEL</h1>
+        <div class="start-content">
+            <p>Uji pengetahuan tentang ke-5 Sola</p>
+            <p>📖 Bersiaplah untuk menyelami Firman Tuhan 🕊</p>
+            <div class="button-group">
+                <button onclick="showMaterial()">📚 MATERI</button>
+                <button onclick="startQuiz()">▶ MULAI QUIZ</button>
             </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressBar"></div>
-            </div>
-            <div class="question-container">
-                <div class="question-number" id="questionNumber"></div>
-                <div class="question-text" id="questionText"></div>
-                <div class="options" id="options"></div>
-            </div>
-            <button onclick="nextQuestion()" id="nextBtn" style="display: none;">LANJUT</button>
-        </div>
-
-        <!-- Result Screen -->
-        <div class="result-screen">
-            <div class="header">
-                <h1>SOULFUEL</h1>
-                <img src="https://github.com/kaylaasem/SoulFuel/blob/main/Photos/Logo_SoulFuel.png?raw=true" height="100px" width="100px" alt="SoulFuel Logo" class="logo">
-            </div>
-            <div class="score" id="finalScore"></div>
-            <div class="result-message" id="resultMessage"></div>
-            <div class="verse">
-                "Firman-Mu itu pelita bagi kakiku dan terang bagi jalanku."<br>- Mazmur 119:105
-            </div>
-            <button onclick="restartQuiz()">MAIN LAGI</button>
         </div>
     </div>
 
-    <!-- Load JavaScript -->
-    <script src="script.js"></script>
+    <!-- Material Screen -->
+    <div class="material-screen">
+        <div class="header">
+            <h1>MATERI</h1>
+            <p class="subtitle">PENGANTAR AJARAN 5 SOLA</p>
+        </div>
+        <div class="material-content">
+            <div class="material-section">
+                <h3>Sola Scriptura</h3>
+                <ul>
+                    <li>Alkitab adalah sumber utama ajaran iman.</li>
+                    <li>Ajaran gereja harus diuji oleh teks Kitab Suci.</li>
+                    <li>Tidak ada tradisi yang setara dengan otoritas Alkitab.</li>
+                </ul>
+                <p class="note">Contoh: ajaran baru harus cocok dengan Kitab Suci.</p>
+            </div>
+
+            <div class="material-section">
+                <h3>Sola Fide</h3>
+                <ul>
+                    <li>Manusia dibenarkan oleh iman kepada Kristus.</li>
+                    <li>Perbuatan baik mengikuti iman, bukan menggantikan iman.</li>
+                    <li>Keselamatan bukan hasil usaha manusia.</li>
+                </ul>
+                <p class="note">Contoh: iman menyelamatkan, perbuatan menunjukkan iman.</p>
+            </div>
+
+            <div class="material-section">
+                <h3>Sola Gratia</h3>
+                <ul>
+                    <li>Keselamatan adalah anugerah Allah.</li>
+                    <li>Manusia tidak dapat memperoleh keselamatan sendiri.</li>
+                    <li>Rahmat datang tanpa syarat yang menuntut upah manusia.</li>
+                </ul>
+                <p class="note">Contoh: kasih dan pengampunan Allah diberikan, bukan dibeli.</p>
+            </div>
+
+            <div class="material-section">
+                <h3>Solus Christus</h3>
+                <ul>
+                    <li>Kristus adalah satu-satunya perantara antara Allah dan manusia.</li>
+                    <li>Keselamatan hanya melalui karya Kristus di salib.</li>
+                    <li>Tidak ada perantara manusia yang setara dengan Kristus.</li>
+                </ul>
+                <p class="note">Contoh: pengampunan dosa melalui percaya kepada Kristus.</p>
+            </div>
+
+            <div class="material-section">
+                <h3>Soli Deo Gloria</h3>
+                <ul>
+                    <li>Segala kemuliaan harus kembali kepada Allah saja.</li>
+                    <li>Tujuan kehidupan orang percaya adalah memuliakan Tuhan.</li>
+                    <li>Ibadah dan tindakan sehari-hari harus mencerminkan kemuliaan Allah.</li>
+                </ul>
+                <p class="note">Contoh: setiap talenta digunakan untuk memuliakan Allah, bukan diri sendiri.</p>
+            </div>    
+
+            <div class="material-section">
+                <h3>Ringkasan Singkat</h3>
+                <ul>
+                    <li>Alkitab (Sola Scriptura).</li>
+                    <li>Iman (Sola Fide).</li>
+                    <li>Anugerah (Sola Gratia).</li>
+                    <li>Kristus (Solus Christus).</li>
+                    <li>Kemuliaan bagi Allah (Soli Deo Gloria).</li>
+                </ul>
+                <p class="note">Gunakan ringkasan ini sebagai penguat saat mengajar atau membuat kuis.</p>
+            </div>
+
+            <div class="verse">
+                "Segala tulisan yang diilhamkan Allah memang bermanfaat untuk mengajar, untuk menyatakan kesalahan, untuk memperbaiki kelakuan dan untuk mendidik orang dalam kebenaran."<br>- 2 Timotius 3:16
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <button onclick="backToStart()">⬅ KEMBALI</button>
+            <button onclick="startQuiz()">▶ MULAI QUIZ</button>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div class="quiz-screen">
+        <div class="header">
+            <h1>SOULFUEL</h1>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+        <div class="question-container">
+            <div class="question-number" id="questionNumber"></div>
+            <div class="question-text" id="questionText"></div>
+            <div class="options" id="options"></div>
+        </div>
+        <button onclick="nextQuestion()" id="nextBtn" style="display: none;">LANJUT</button>
+    </div>
+
+    <!-- Result Screen -->
+    <div class="result-screen">
+        <div class="header">
+            <h1>SOULFUEL</h1>
+            <img src="https://github.com/kaylaasem/SoulFuel/blob/main/Photos/Logo_SoulFuel.png?raw=true" height="100px" width="100px" alt="SoulFuel Logo" class="logo">
+        </div>
+        <div class="score" id="finalScore"></div>
+        <div class="result-message" id="resultMessage"></div>
+        <div class="verse">
+            "Firman-Mu itu pelita bagi kakiku dan terang bagi jalanku."<br>- Mazmur 119:105
+        </div>
+        <button onclick="restartQuiz()">MAIN LAGI</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+
 </body>
 </html>
