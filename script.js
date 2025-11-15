@@ -1,8 +1,8 @@
 const questions = [
     {
         question: "Apa arti Sola Scriptura?",
-        options: ["Keselamatan dari tradisi", "Alkitab sebagai otoritas tertinggi", "Manusia bebas menentukan kebenaran", "Konsili gereja sebagai pusat ajaran"],
-        correct: 1
+        options: ["Keselamatan dari tradisi", "Manusia bebas menentukan kebenaran", "Konsili gereja sebagai pusat ajaran", "Alkitab sebagai otoritas tertinggi"],
+        correct: 3
     },
     {
         question: "Prinsip mana yang menegaskan bahwa keselamatan hanya melalui iman?",
@@ -26,8 +26,8 @@ const questions = [
     },
     {
         question: "Sola Fide mengajarkan bahwa manusia dibenarkan oleh apa?",
-        options: ["Perbuatan baik", "Iman kepada Kristus", "Ketaatan pada hukum adat", "Ritual keagamaan"],
-        correct: 1
+        options: ["Perbuatan baik", "Ketaatan pada hukum adat", "Iman kepada Kristus", "Ritual keagamaan"],
+        correct: 2
     },
     {
         question: "Sola Scriptura menolak otoritas apa sebagai sumber kebenaran tertinggi?",
@@ -36,8 +36,8 @@ const questions = [
     },
     {
         question: "Sola Gratia menekankan bahwa keselamatan adalah pemberian apa?",
-        options: ["Upah", "Anugerah", "Hasil usaha manusia", "Pengorbanan imam"],
-        correct: 1
+        options: ["Upah", "Hasil usaha manusia", "Pengorbanan imam", "Anugerah"],
+        correct: 3
     },
     {
         question: "Solus Christus mengakui siapa sebagai satu-satunya perantara?",
@@ -51,13 +51,13 @@ const questions = [
     },
     {
         question: "Sola Scriptura memastikan bahwa ajaran iman berasal dari mana?",
-        options: ["Keputusan politik", "Filsafat Yunani", "Alkitab", "Tradisi keluarga"],
-        correct: 2
+        options: ["Keputusan politik", "Filsafat Yunani", "Tradisi keluarga", "Alkitab"],
+        correct: 3
     },
     {
         question: "Sola Fide menolak gagasan bahwa keselamatan dicapai melalui apa?",
-        options: ["Iman", "Perbuatan baik", "Doa", "Mendengar firman"],
-        correct: 1
+        options: ["Perbuatan baik", "Iman", "Doa", "Mendengar firman"],
+        correct: 0
     },
     {
         question: "Sola Gratia mengajarkan bahwa manusia tidak dapat diselamatkan oleh apa?",
@@ -86,8 +86,8 @@ const questions = [
     },
     {
         question: "Sola Gratia menunjukkan bahwa keselamatan diberikan tanpa apa?",
-        options: ["Kasih Allah", "Bayaran", "Iman", "Pengorbanan Kristus"],
-        correct: 1
+        options: ["Kasih Allah", "Iman", "Pengorbanan Kristus", "Bayaran"],
+        correct: 3
     },
     {
         question: "Solus Christus menunjukkan bahwa karya keselamatan diselesaikan melalui apa?",
@@ -106,8 +106,19 @@ let currentQuestion = 0;
 let score = 0;
 let selectedAnswer = null;
 
+function showMaterial() {
+    document.querySelector('.start-screen').classList.remove('active');
+    document.querySelector('.material-screen').classList.add('active');
+}
+
+function backToStart() {
+    document.querySelector('.material-screen').classList.remove('active');
+    document.querySelector('.start-screen').classList.add('active');
+}
+
 function startQuiz() {
     document.querySelector('.start-screen').classList.remove('active');
+    document.querySelector('.material-screen').classList.remove('active');
     document.querySelector('.quiz-screen').classList.add('active');
     currentQuestion = 0;
     score = 0;
@@ -116,18 +127,17 @@ function startQuiz() {
 
 function loadQuestion() {
     const question = questions[currentQuestion];
-    document.getElementById('questionNumber').textContent =
-        `Pertanyaan ${currentQuestion + 1} dari ${questions.length}`;
+    document.getElementById('questionNumber').textContent = `Pertanyaan ${currentQuestion + 1} dari ${questions.length}`;
     document.getElementById('questionText').textContent = question.question;
-
+    
     const optionsContainer = document.getElementById('options');
     optionsContainer.innerHTML = '';
-
+    
     question.options.forEach((option, index) => {
         const optionDiv = document.createElement('div');
         optionDiv.className = 'option';
         optionDiv.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
-        optionDiv.onclick = () => selectAnswer(index);
+        optionDiv.onclick = () => selectAnswer(index, optionDiv);
         optionsContainer.appendChild(optionDiv);
     });
 
@@ -136,7 +146,7 @@ function loadQuestion() {
     updateProgress();
 }
 
-function selectAnswer(index) {
+function selectAnswer(index, element) {
     if (selectedAnswer !== null) return;
 
     selectedAnswer = index;
@@ -152,7 +162,9 @@ function selectAnswer(index) {
         opt.style.pointerEvents = 'none';
     });
 
-    if (index === question.correct) score++;
+    if (index === question.correct) {
+        score++;
+    }
 
     document.getElementById('nextBtn').style.display = 'block';
 }
@@ -174,12 +186,11 @@ function updateProgress() {
 function showResults() {
     document.querySelector('.quiz-screen').classList.remove('active');
     document.querySelector('.result-screen').classList.add('active');
-
+    
     const percentage = (score / questions.length) * 100;
-    document.getElementById('finalScore').textContent =
-        `${score}/${questions.length}`;
-
-    let message = "";
+    document.getElementById('finalScore').textContent = `${score}/${questions.length}`;
+    
+    let message = '';
     if (percentage === 100) {
         message = '🏆 SEMPURNA! Pengetahuan Alkitab Anda luar biasa!';
     } else if (percentage >= 80) {
@@ -189,7 +200,7 @@ function showResults() {
     } else {
         message = '📖 Terus semangat mempelajari Alkitab!';
     }
-
+    
     document.getElementById('resultMessage').textContent = message;
 }
 
